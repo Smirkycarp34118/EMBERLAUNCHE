@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; connect-src 'self';" />
+  <title>Ember Launcher</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="splash" class="splash">
+    <div class="splash-orb"></div>
+    <div class="splash-inner">
+      <img class="splash-logo" src="../../assets/icons/icon-256.png" alt="" />
+      <div class="splash-word">EMBER<span>LAUNCHER</span></div>
+      <div class="splash-tagline">Твой мир начинается здесь</div>
+      <div class="splash-progress"><i id="splash-bar"></i></div>
+      <div class="splash-status" id="splash-status">Пробуждаем лаунчер</div>
+    </div>
+    <div class="splash-foot">v1.0.0 · LOCAL EDITION</div>
+  </div>
+
+  <div class="app is-loading" id="app" aria-hidden="true">
+    <div class="bg-stage" id="bg-stage" aria-hidden="true">
+      <div class="bg-layer" data-bg="canyon"></div>
+      <div class="bg-layer" data-bg="cliffs"></div>
+      <div class="bg-layer" data-bg="jungle"></div>
+      <div class="bg-shade"></div>
+      <div class="bg-grain"></div>
+    </div>
+    <canvas class="embers" id="embers" aria-hidden="true"></canvas>
+
+    <aside class="rail">
+      <div class="brand" data-action="go-home" role="button" tabindex="0">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" fill="none">
+            <path d="M20 5.5 33 13v14L20 34.5 7 27V13L20 5.5Z" fill="url(#brandGrad)" stroke="rgba(255,231,192,.55)" stroke-width="1.1"/>
+            <path d="M7 13l13 7.5L33 13M20 20.5V34.5" stroke="rgba(94,32,10,.55)" stroke-width="1.1"/>
+            <path d="M20 11.5l7 4.1-7 4-7-4 7-4Z" fill="rgba(255,244,214,.35)"/>
+            <defs><linearGradient id="brandGrad" x1="10" y1="7" x2="30" y2="33" gradientUnits="userSpaceOnUse"><stop stop-color="#FFD08A"/><stop offset=".45" stop-color="#FF8A3C"/><stop offset="1" stop-color="#C63A0E"/></linearGradient></defs>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <strong>EMBER</strong>
+          <small>LAUNCHER</small>
+        </span>
+      </div>
+
+      <nav class="nav" id="nav" aria-label="Основная навигация">
+        <button class="nav-item" data-page="home" data-action="navigate">
+          <span class="nav-icon" data-icon="home"></span><span class="nav-label">Обзор</span><span class="nav-glow"></span>
+        </button>
+        <button class="nav-item" data-page="versions" data-action="navigate">
+          <span class="nav-icon" data-icon="layers"></span><span class="nav-label">Версии</span><span class="nav-glow"></span>
+        </button>
+        <button class="nav-item" data-page="mods" data-action="navigate">
+          <span class="nav-icon" data-icon="puzzle"></span><span class="nav-label">Моды</span><span class="nav-glow"></span>
+        </button>
+        <button class="nav-item" data-page="settings" data-action="navigate">
+          <span class="nav-icon" data-icon="sliders"></span><span class="nav-label">Настройки</span><span class="nav-glow"></span>
+        </button>
+      </nav>
+
+      <div class="rail-spacer"></div>
+
+      <button class="rail-profile" data-action="account" aria-label="Профиль">
+        <span class="avatar avatar-sm" id="rail-avatar"></span>
+        <span class="rail-profile-text">
+          <strong id="rail-name">Steve</strong>
+          <small>Локальный профиль</small>
+        </span>
+        <span class="rail-profile-more" data-icon="more"></span>
+      </button>
+      <div class="rail-foot">
+        <span class="rail-state"><i class="status-dot" id="rail-dot"></i><span id="rail-status">Локальный режим</span></span>
+        <span class="rail-version">v1.0.0</span>
+      </div>
+    </aside>
+
+    <section class="workspace">
+      <header class="titlebar">
+        <div class="titlebar-left">
+          <span class="titlebar-kicker" id="page-kicker">ЛАУНЧЕР</span>
+          <span class="titlebar-divider"></span>
+          <span class="titlebar-page" id="page-crumb">Обзор</span>
+        </div>
+        <div class="titlebar-right">
+          <span class="service-pill" id="service-pill"><i class="status-dot"></i><span>Проверка сети</span></span>
+          <span class="titlebar-divider"></span>
+          <div class="window-controls">
+            <button class="win-btn" data-action="win-min" aria-label="Свернуть"><span data-icon="minimize"></span></button>
+            <button class="win-btn" data-action="win-max" aria-label="Развернуть"><span data-icon="maximize"></span></button>
+            <button class="win-btn win-close" data-action="win-close" aria-label="Закрыть"><span data-icon="close"></span></button>
+          </div>
+        </div>
+      </header>
+
+      <main class="view" id="view" tabindex="-1"></main>
+    </section>
+  </div>
+
+  <div id="modal-root"></div>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+  <div id="launch-root"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
